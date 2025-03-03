@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"   
+             xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"             
+             x:Class="ListViewMAUI.BookPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="80, 0.9*, 1, 0.1*">
+            <Image Grid.Column="0"
+                               Source="{Binding SelectedItem.Image}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="60"
+                               WidthRequest="60" />
+
+            <dataForm:SfDataForm x:Name="bookForm" 
+                                 DataObject="{Binding SelectedItem}" 
+                                 Grid.Row="1" 
+                                 IsReadOnly="{Binding IsReadOnly}" 
+                                 CommitMode="Manual" />
+            <Border Grid.Row="2" Background="#F5F5F5"/>
+            <Grid HeightRequest="60" Grid.Row="3" >
+
+            <chip:SfChipGroup HorizontalOptions="Center" 
+                IsVisible="{Binding IsVisible}"
+                                            ItemHeight="40" 
+                                            ChipCornerRadius="20" 
+                                            ChipBackground="Transparent" 
+                                            ChipStrokeThickness="0"      
+                                            ChipPadding="10"  
+                                            ChipClicked="OnChipClicked"                                                                               
+                                            ItemsSource="{Binding CommitOptions}">
+                <chip:SfChipGroup.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding ActionIcon}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  WidthRequest="40" FontFamily="MauiSampleFontIcon" TextColor="{StaticResource Primary}" FontSize="Medium"/>
+                            <Label Text="{Binding ActionName}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  TextColor="{StaticResource Primary}"  FontFamily="Roboto-Regular"   FontSize="{OnPlatform Default=16,WinUI=14}" Margin="0,0,5,0"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </chip:SfChipGroup.ItemTemplate>
+            </chip:SfChipGroup>
+
+                <chip:SfChipGroup HorizontalOptions="Center" 
+                    IsVisible="{Binding IsReadOnly}"
+                                              ItemHeight="40" 
+                                              ChipCornerRadius="20" 
+                                              ChipBackground="Transparent" 
+                                              ChipStrokeThickness="0"      
+                                              ChipPadding="10"  
+                                              ChipClicked="OnChipClicked"                                         
+                                              ItemsSource="{Binding CRUDOptions}">
+                    <chip:SfChipGroup.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding ActionIcon}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="40" FontFamily="MauiSampleFontIcon" TextColor="{StaticResource Primary}" FontSize="Medium"/>
+                                <Label Text="{Binding ActionName}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  TextColor="{StaticResource Primary}"  FontFamily="Roboto-Regular"  FontSize="{OnPlatform Default=16,WinUI=14}" Margin="0,0,5,0"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </chip:SfChipGroup.ItemTemplate>
+                </chip:SfChipGroup>
+                
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

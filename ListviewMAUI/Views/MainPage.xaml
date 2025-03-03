@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:local="clr-namespace:ListViewMAUI"
+             x:Class="ListViewMAUI.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <local:ListViewSearchBehavior/>
+    </ContentPage.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid ColumnDefinitions="*,40">
+            <SearchBar x:Name="searchBar" Grid.Column="0"/>
+            <Label Text="&#xe754;"           
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                FontFamily="MauiSampleFontIcon"          
+                TextColor="{StaticResource Primary}"        
+                    Grid.Column="1"
+                FontSize="Medium" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateBookCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+        <syncfusion:SfListView x:Name="listView"
+                AutoFitMode="Height"
+                ItemSize="200"			 
+                Grid.Row="1"
+                TapCommand="{Binding TapCommand}"
+                ItemsSource="{Binding Books}">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowSpacing="0" Padding="8,12,8,0" ColumnSpacing="0" Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <Grid RowSpacing="0" Padding="0,0,8,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image}"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    HeightRequest="100"
+                                    WidthRequest="90"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Start" />
+                            <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,Auto" RowSpacing="5">
+                                <Label Text="{Binding Name}" FontAttributes="Bold"  FontSize="16" TextColor="#474747"/>
+                                <Label Text="{Binding Author}" Grid.Row="1" FontSize="14"  Opacity=" 0.67" TextColor="#474747" />
+                                <Label Text="{Binding Description}" Grid.Row="2"  Opacity=" 0.54" TextColor="#474747" LineBreakMode="WordWrap" CharacterSpacing="0.1" FontSize="13"/>
+                            </Grid>
+                        </Grid>
+                        <BoxView Grid.Row="1" Margin="5,0,0,0" HeightRequest="1" Opacity="0.75" BackgroundColor="#CECECE" />
+                    </Grid>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+    </Grid>
+</ContentPage>
