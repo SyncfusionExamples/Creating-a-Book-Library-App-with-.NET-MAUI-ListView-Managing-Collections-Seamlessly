@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              xmlns:local="clr-namespace:ListViewMAUI"
+             xmlns:entry="clr-namespace:ListViewMAUI.Helper"
              x:Class="ListViewMAUI.MainPage">
 
     <ContentPage.BindingContext>
@@ -19,19 +20,44 @@
         </Grid.RowDefinitions>
 
         <Grid ColumnDefinitions="*,40">
-            <SearchBar x:Name="searchBar" Grid.Column="0"/>
+            <Border StrokeThickness="1"
+                    BackgroundColor="White"
+               Margin="8,8,0,8"
+               StrokeShape="RoundRectangle 8">
+                <Grid ColumnDefinitions="Auto,*"
+             Margin="0,0,8,0">
+                    <Label Text="&#xe728;"
+          FontFamily="MauiSampleFontIcon"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          FontSize="16"
+          Margin="10,0,12,0" />
+                    <entry:SfEntry  x:Name="searchBar"
+       Grid.Column="1" 
+       BackgroundColor="Transparent"
+       VerticalTextAlignment="{OnPlatform Default=Start, MacCatalyst=Center, iOS=Center}"
+       FontFamily="Roboto-Regular"
+       FontSize="16"
+       HeightRequest="38"
+       ClearButtonVisibility="Never" />
+                </Grid>
+            </Border>
+
             <Label Text="&#xe754;"           
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                FontFamily="MauiSampleFontIcon"          
-                TextColor="{StaticResource Primary}"        
-                    Grid.Column="1"
-                FontSize="Medium" >
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+           FontFamily="MauiSampleFontIcon"          
+           TextColor="{StaticResource Primary}"        
+               Grid.Column="1"
+           FontSize="Medium" >
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateBookCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
         </Grid>
+
+
+
 
         <syncfusion:SfListView x:Name="listView"
                 AutoFitMode="Height"
