@@ -25,7 +25,7 @@ namespace ListViewMAUI
                     Name = BookNames[i],
                     Description = BookDescriptions[i],
                     Author = BookAuthers[i],
-                    Image = "Book" + i + ".png"
+                    Image = "book" + i + ".png"
                 };
                 bookInfo.Add(book);
             }
