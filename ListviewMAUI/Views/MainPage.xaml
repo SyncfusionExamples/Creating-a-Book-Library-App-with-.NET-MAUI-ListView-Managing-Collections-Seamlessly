@@ -56,9 +56,6 @@
             </Label>
         </Grid>
 
-
-
-
         <syncfusion:SfListView x:Name="listView"
                 AutoFitMode="Height"
                 ItemSize="200"			 
