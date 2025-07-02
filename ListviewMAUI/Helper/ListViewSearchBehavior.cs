@@ -5,7 +5,7 @@
         #region Fields
 
         private Syncfusion.Maui.ListView.SfListView ListView;
-        private SearchBar searchBar = null;
+        private Entry searchBar = null;
 
         #endregion
 
@@ -13,7 +13,7 @@
         protected override void OnAttachedTo(ContentPage bindable)
         {
             ListView = ListView = bindable.FindByName<Syncfusion.Maui.ListView.SfListView>("listView");
-            searchBar = bindable.FindByName<SearchBar>("searchBar");          
+            searchBar = bindable.FindByName<Entry>("searchBar");          
             searchBar.TextChanged += SearchBar_TextChanged;
 
             base.OnAttachedTo(bindable);
@@ -29,7 +29,7 @@
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            searchBar = (sender as SearchBar);
+            searchBar = (sender as Entry);
             if (ListView.DataSource != null)
             {
                 ListView.DataSource.Filter = FilterBooks;
