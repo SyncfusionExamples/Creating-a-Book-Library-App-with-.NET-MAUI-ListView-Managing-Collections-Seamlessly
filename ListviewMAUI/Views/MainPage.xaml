@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
              xmlns:local="clr-namespace:ListViewMAUI"
-             xmlns:entry="clr-namespace:ListViewMAUI.Helper"
              x:Class="ListViewMAUI.MainPage">
 
     <ContentPage.BindingContext>
@@ -32,7 +31,7 @@
           HorizontalOptions="Center"
           FontSize="16"
           Margin="10,0,12,0" />
-                    <entry:SfEntry  x:Name="searchBar"
+                    <local:SfEntry  x:Name="searchBar"
        Grid.Column="1" 
        BackgroundColor="Transparent"
        VerticalTextAlignment="{OnPlatform Default=Start, MacCatalyst=Center, iOS=Center}"
